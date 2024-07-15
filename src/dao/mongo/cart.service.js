@@ -16,6 +16,22 @@ export default class CartManager{
             console.log(error)
         }
     }
+
+    async totalAmount(cid){
+        try {
+            const cart = await cartModel.findById(cid).populate('products.product')
+            if (!cart) {
+                throw new Error('Carrito no encontrado')
+            }
+            let total = 0
+            cart.products.forEach(item => {
+                total += item.product.price * item.quantity;
+            })
+            return total
+        } catch (error) {
+            console.log(error)
+        }
+    }
     //Funcion que busca los carritos existentes
     async getCarts() {
         try {

@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import { isAuthenticated, isNotAuthenticated } from '../middleware/auth.js'
+import ticketManager from '../dao/mongo/ticket.service.js'
 
 const router = Router()
 

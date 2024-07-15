@@ -14,6 +14,17 @@ router.get('/carts/:cid', async (req, res) => {
     }
 })
 
+router.get('/api/carts/:cid/total' ,async(req,res)=>{
+    try{
+        const {cid} = req.params
+        const total = await manager.totalAmount(cid)
+        
+        res.status(200).json({status: "success", total : total})
+    }catch(error){
+        res.status(500).json({error: `Server error: ${error}` })
+    }
+})
+
 router.post('/api/carts', async (req, res) => {
     try {
         let status = await manager.addCart()

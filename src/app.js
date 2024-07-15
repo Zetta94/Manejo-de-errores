@@ -16,6 +16,7 @@ import sessionsRouter from './routes/api/sessions.router.js'
 import productRouter from "./routes/products.router.js"
 import cartRouter from "./routes/carts.router.js"
 import viewsRouter from './routes/views.router.js'
+import ticketRouter from './routes/api/ticket.router.js'
 //Passport
 import passport from 'passport'
 import initializePassport from './config/passport.config.js'
@@ -44,13 +45,20 @@ app.engine('handlebars', hbs.engine)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
 
-
-app.use(session({
-    secret: process.env.SECRET_KEY,
-    resave: false,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
-}))
+let persistence = process.env.PERSISTENCE
+switch(persistence){
+    case "MONGO":
+        app.use(session({
+            secret: process.env.SECRET_KEY,
+            resave: false,
+            saveUninitialized: true,
+            store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
+        }))
+        break;
+    case "MEMORY":
+        //No se implemento otro metodo de persistencia en la memoria todavia.
+        break;    
+}
 
 //Inicializo Passport
 initializePassport()
@@ -67,6 +75,7 @@ app.use('/api/sessions', sessionsRouter)
 app.use('/', viewsRouter)
 app.use('/', cartRouter)
 app.use('/', productRouter)
+app.use('/ticket',ticketRouter)
 
 const PORT = 8080
 app.listen(PORT, () => {
