@@ -43,13 +43,31 @@ router.post('/logout', (req, res) => {
     })
 })
 
-router.get('/current',(req,res)=>{
+router.get('/current', (req, res) => {
     try {
-        req.session.user = req.user
-        res.status(200).json({ payload: req.session.user })
+        if (!req.user) {
+            return res.status(401).json({ error: 'Usuario no autenticado' })
+        }
+
+        const userDTO = {
+            _id: req.user._id,
+            first_name: req.user.first_name,
+            last_name: req.user.last_name,
+            email: req.user.email,
+            age: req.user.age,
+            cart: req.user.cart,
+            role: req.user.role,
+
+        }
+
+        req.session.user = userDTO
+        res.status(200).json({ payload: userDTO })
     } catch (error) {
-        res.status(500).json({ error: `Server error: ${error}` })
+        console.error('Error al obtener el usuario actual:', error)
+        res.status(500).json({ error: `Error en el servidor: ${error.message}` })
     }
-})
+});
+
+
 
 export default router

@@ -45,20 +45,14 @@ app.engine('handlebars', hbs.engine)
 app.set('views', __dirname + '/views')
 app.set('view engine', 'handlebars')
 
-let persistence = process.env.PERSISTENCE
-switch(persistence){
-    case "MONGO":
-        app.use(session({
-            secret: process.env.SECRET_KEY,
-            resave: false,
-            saveUninitialized: true,
-            store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
-        }))
-        break;
-    case "MEMORY":
-        //No se implemento otro metodo de persistencia en la memoria todavia.
-        break;    
-}
+
+app.use(session({
+    secret: process.env.SECRET_KEY,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URL }),
+}))
+
 
 //Inicializo Passport
 initializePassport()
