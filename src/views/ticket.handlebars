@@ -1,0 +1,68 @@
+<div class="container">
+    <h1>¡Gracias por su compra {{user.first_name}}!</h1>
+    <h2>El ticket de su compra ha sido generado.</h2>
+    <button id="sendTicketBtn">Send ticket by email</button>
+    <form action="/api/sessions/logout" method="POST">
+        <button type="submit">Back to shopping</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sendTicketBtn = document.getElementById('sendTicketBtn')
+
+        sendTicketBtn.addEventListener('click', async function() {
+            try {
+                const cartId = '{{user.cart}}'
+                const totalAmount = await fetchCartTotal(cartId)
+                if (totalAmount === null) return
+
+                console.log("Numero generado:", totalAmount);
+                const uniqueNumber = Math.floor(new Date().valueOf() + Math.random() * 10000)
+
+                const data = {
+                    purchaser: '{{user.email}}',
+                    amount: totalAmount,
+                    code: uniqueNumber
+                }
+
+                const response = await fetch('http://localhost:8080/ticket/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error al generar el ticket')
+                }
+
+                const result = await response.json();
+                alert('Ticket enviado por correo');
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al generar el ticket y enviarlo por correo')
+            }
+        })
+    });
+
+    async function fetchCartTotal(cartId) {
+        const url = `http://localhost:8080/api/carts/${cartId}/total`
+        try {
+            const response = await fetch(url)
+            if (response.ok) {
+                const data = await response.json()
+                const total = data.total
+                return total
+            } else {
+                throw new Error('Error al obtener el precio total')
+            }
+        } catch (error) {
+            console.error('Error:', error)
+            alert('Error al obtener el precio total')
+            return null
+        }
+    }
+</script>

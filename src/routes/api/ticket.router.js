@@ -1,19 +1,24 @@
 import { Router } from "express"
 import ticketManager from "../../dao/mongo/ticket.service.js"
+import sendMailTo from "../../notifications/nodemailer.config.js"
 
 const router = Router()
 const manager = new ticketManager()
 
-router.post('/', async (req, res) => {
+router.post('/generate', async (req, res) => {
     try {
-        const {code, amount, purchase} = req.body
-        const status = await manager.newTicket(code, amount, purchase)
-        console.log(status)
-        res.status(status.code).json({status: status.status})
+        const { code, amount, purchaser } = req.body;
+        const status = await manager.newTicket(code, amount, purchaser)
+        
+        //Enviar mail.
+        const mailSubject = 'Detalle de su compra'
+        const mailText = `Gracias por su compra. Aquí está el detalle de su ticket:\n\nCódigo: ${code}\nMonto total $: ${amount}\n`
+        await sendMailTo(purchaser, mailSubject, mailText)
+
+        res.status(201).json({ status: 'Ticket generado correctamente', data: status })
     } catch (error) {
-        res.status(500).json({ error: `Server error: ${error}` })
+        res.status(500).json({ error: `Server error: ${error.message}` })
     }
-    
 })
 
 export default router

@@ -1,17 +1,22 @@
 import ticketModel from "../../models/ticket.model.js"
 
-export default class ticketManager{
-    async newTicket(code, amount, purchase) {
+export default class ticketManager {
+    async newTicket(code, amount, purchaser) {
         try {
-            const newTicket ={
+            if (typeof amount !== 'number' || isNaN(amount)) {
+                throw new Error('Amount debe ser un número válido');
+            }
+
+            const newTicket = {
                 code: code,
                 amount: amount,
-                purchaser : purchase
+                purchaser: purchaser
             }
-            const result = await ticketModel.create(newTicket)
-            return result
+            const result = await ticketModel.create(newTicket);
+            return result;
         } catch (error) {
-            console.log(error)
+            console.log('Error al crear el ticket:', error);
+            throw error
         }
     }
 }

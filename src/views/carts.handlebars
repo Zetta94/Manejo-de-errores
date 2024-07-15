@@ -48,11 +48,19 @@
     </div>
     <div>
         <h1>Monto total: $ <span id="totalAmount">0</span></h1>
-        <button>Finalizar compra</button>
+        <button id="finishPurchaseBtn">Finalizar compra</button>
     </div>
 </div>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const finishPurchaseBtn = document.getElementById('finishPurchaseBtn')
+
+        finishPurchaseBtn.addEventListener('click', function() {
+            window.location.href = 'http://localhost:8080/sendTicket'
+        });
+    });
+
     document.addEventListener('DOMContentLoaded', async function() {
         const cartId = '{{cid}}' 
         const total = await fetchCartTotal(cartId)

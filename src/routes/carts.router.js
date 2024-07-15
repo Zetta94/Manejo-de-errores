@@ -14,6 +14,16 @@ router.get('/carts/:cid', async (req, res) => {
     }
 })
 
+router.get('/api/carts/:cid', async (req, res) => {
+    const { cid } = req.params
+    const cartProducts = await manager.getProductsOfCartById(cid)
+    if(cartProducts) {
+        res.status(200).json({status: "success", payload : cartProducts})
+    }else {
+      res.status(404).json({'error': 'Cart not found'})
+    }
+})
+
 router.get('/api/carts/:cid/total' ,async(req,res)=>{
     try{
         const {cid} = req.params

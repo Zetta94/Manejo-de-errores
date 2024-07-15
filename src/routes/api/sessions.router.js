@@ -46,7 +46,7 @@ router.post('/logout', (req, res) => {
 router.get('/current',(req,res)=>{
     try {
         req.session.user = req.user
-        res.status(200).json({ status: req.session.user })
+        res.status(200).json({ payload: req.session.user })
     } catch (error) {
         res.status(500).json({ error: `Server error: ${error}` })
     }
