@@ -17,6 +17,7 @@ import productRouter from "./routes/products.router.js"
 import cartRouter from "./routes/carts.router.js"
 import viewsRouter from './routes/views.router.js'
 import ticketRouter from './routes/api/ticket.router.js'
+import mockingRouter from './routes/api/moking.router.js'
 //Passport
 import passport from 'passport'
 import initializePassport from './config/passport.config.js'
@@ -70,6 +71,7 @@ app.use('/', viewsRouter)
 app.use('/', cartRouter)
 app.use('/', productRouter)
 app.use('/ticket',ticketRouter)
+app.use('/mockingproducts',mockingRouter)
 
 const PORT = 8080
 app.listen(PORT, () => {
