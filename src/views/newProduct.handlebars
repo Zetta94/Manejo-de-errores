@@ -1,0 +1,86 @@
+<div>
+    <h1>Generate product</h1>
+    <form action="/products/new" method="POST">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter product title">
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" placeholder="Enter product description" required></textarea>
+
+        <label for="price">Price</label>
+        <input type="number" id="price" name="price" placeholder="Enter product price">
+
+        <label for="status">Status</label>
+            <div class="radio-group">
+                <input type="radio" id="status-true" name="status" value="true" required>
+                <label class="radio-label" for="status-true">True</label>
+                <input type="radio" id="status-false" name="status" value="false">
+                <label class="radio-label" for="status-false">False</label>
+            </div>
+
+        <label for="code">Code</label>
+        <input type="text" id="code" name="code" placeholder="Enter product code" required>
+
+        <label for="stock">Stock</label>
+        <input type="number" id="stock" name="stock" placeholder="Enter product stock" required>
+
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" placeholder="Enter product category" required>
+
+        <label for="thumbnail">Thumbnail URL</label>
+        <input type="url" id="thumbnail" name="thumbnail" placeholder="Enter thumbnail URL" required>
+
+        <button type="submit">Create Product</button>
+    </form>
+</div>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .admin-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .radio-group input {
+            margin-right: 10px;
+        }
+        .radio-label {
+            margin-right: 20px;
+        }
+    </style>

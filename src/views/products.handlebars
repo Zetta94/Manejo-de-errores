@@ -20,11 +20,16 @@
                         <a href="http://localhost:8080/profile" class="btn btn-primary">PROFILE</a>
                     </div>
                 </div>
+                
             </div>
         </div>
     </nav>
 
-
+    <div>
+        {{#if (eq user.role "superadmin")}}
+            <button class="admin-button" id="adminButton">Generate Product</button>
+        {{/if}}
+    </div>
 
     <div class="container mt-5">
     <div class="row align-items-start">
@@ -116,6 +121,11 @@
 
 
 <script>
+
+    document.getElementById('adminButton').addEventListener('click', function() {
+            window.location.href = '/newProduct';
+    });
+
     async function addToCart(cid,pid) {
         console.log("cid:",cid)
         const url = `http://localhost:8080/api/carts/${cid}/product/${pid}`

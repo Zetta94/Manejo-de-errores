@@ -21,5 +21,8 @@ router.get('/sendTicket',(req,res)=>{
     res.render('ticket',{user : req.session.user})
 })
 
+router.get('/newProduct',(req,res)=>{
+    res.render('newProduct',{user:req.session.user})
+})
 
 export default router

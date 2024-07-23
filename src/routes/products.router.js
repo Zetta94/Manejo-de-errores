@@ -78,18 +78,18 @@ router.get("/product/:pid",async (req,res)=>{
     }
 })
 
-// router.post('/', async (req, res) => {
-//     try{
-//         let { title, price, available } = req.body
-//         if (!title || !price) {
-//             res.send({ status: "error", error: "Faltan parametros" })
-//         }
-//         let result = await productModel.create({ title, price, available })
-//         res.send({ result: "success", payload: result })
-//     }catch(error){
-//         console.log(error)
-//     }
-// })
+router.post('/products/new', isAuthenticated, async (req, res) => {
+    try{
+        let { title, description,price ,status ,code , stock, category, thumbnail} = req.body
+        if (!title || !price) {
+            res.send({ status: "error", error: "Faltan parametros" })
+        }
+        let result = await productModel.create({title, description, price, status, code, stock, category, thumbnail})
+        res.send({ result: "success", payload: result })
+    }catch(error){
+        console.log(error)
+    }
+})
 
 // router.put('/:uid', async (req, res) => {
 //     try {
