@@ -4,7 +4,11 @@ import productModel from "../models/product.model.js"
 import ProductManager from "../dao/mongo/product.service.js"
 const manager = new ProductManager()
 import { isAuthenticated} from '../middleware/auth.js'
-
+//Error
+import CustomError from "../services/errors/customError.js"
+import EErrors from "../services/errors/enum.js"
+import { generateProductErrorInfo } from "../services/errors/info.js"
+import {logErrorToFile} from '../services/errors/errorLogger.js'
 
 router.get('/products',isAuthenticated, async (req, res) => {
     let { limit = 4, page = 1, sort, query } = req.query
@@ -82,12 +86,21 @@ router.post('/products/new', isAuthenticated, async (req, res) => {
     try{
         let { title, description,price ,status ,code , stock, category, thumbnail} = req.body
         if (!title || !price) {
-            res.send({ status: "error", error: "Faltan parametros" })
+            const error = CustomError.createError({
+                name: "Creación de productos",
+                cause: generateProductErrorInfo({title,price}),
+                message: "Error al intentar generar un producto",
+                code: EErrors.INVALID_TYPES_ERROR
+            })
+            logErrorToFile(error)
+            throw error;
         }
         let result = await productModel.create({title, description, price, status, code, stock, category, thumbnail})
         res.send({ result: "success", payload: result })
     }catch(error){
+        logErrorToFile(error);
         console.log(error)
+        res.status(500).send({ error: error.message });
     }
 })
 

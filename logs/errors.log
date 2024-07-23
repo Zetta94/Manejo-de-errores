@@ -1,0 +1,57 @@
+
+        [2024-07-23T15:29:11.955Z] - Error: Error al intentar generar un producto
+        Cause: Una o mas propiedades estan incompletas
+    Lista de propiedades:
+    *Title: Necesita ser un string, se recibió -->  
+    *Price: Necesita ser un número, se recibió --> 3
+    
+        Stack Trace: Creación de productos: Error al intentar generar un producto
+    at Function.createError (file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/services/errors/customError.js:3:23)
+    at file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/routes/products.router.js:89:39
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:149:13)
+    at isAuthenticated (file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/middleware/auth.js:3:16)
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\index.js:284:15
+    
+
+        [2024-07-23T15:29:37.705Z] - Error: Error al intentar generar un producto
+        Cause: Una o mas propiedades estan incompletas
+    Lista de propiedades:
+    *Title: Necesita ser un string, se recibió --> asd 
+    *Price: Necesita ser un número, se recibió --> 
+    
+        Stack Trace: Creación de productos: Error al intentar generar un producto
+    at Function.createError (file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/services/errors/customError.js:3:23)
+    at file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/routes/products.router.js:89:39
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:149:13)
+    at isAuthenticated (file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/middleware/auth.js:3:16)
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\index.js:284:15
+    
+
+        [2024-07-23T15:30:17.586Z] - Error: Error al intentar generar un producto
+        Cause: Una o mas propiedades estan incompletas
+    Lista de propiedades:
+    *Title: Necesita ser un string, se recibió --> Probando solo titulo 
+    *Price: Necesita ser un número, se recibió --> 
+    
+        Stack Trace: Creación de productos: Error al intentar generar un producto
+    at Function.createError (file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/services/errors/customError.js:3:23)
+    at file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/routes/products.router.js:89:39
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:149:13)
+    at isAuthenticated (file:///C:/Users/Manu/Desktop/CoderHouse%20Backend%202024/Mocking%20y%20manejo%20de%20errores/src/middleware/auth.js:3:16)
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Manu\Desktop\CoderHouse Backend 2024\Mocking y manejo de errores\node_modules\express\lib\router\index.js:284:15
+    
